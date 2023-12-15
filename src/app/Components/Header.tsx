@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { RootState, AppDispatch } from "../../store";
 import { useSelector, useDispatch } from "react-redux";
 import { reset } from "@/store/reducers/LoginSlice";
+import { removeLocalStorage } from "../utils";
 
 export type IHeaderProp = {
   userInfo?: {
@@ -15,9 +16,10 @@ const Header: FC<IHeaderProp> = ({ userInfo }) => {
 
   const logoutAction = () => {
     dispatch(reset());
+    removeLocalStorage('userDetails');
   };
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-gray-800 fixed w-full">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div
           className={`relative flex h-16 items-center ${

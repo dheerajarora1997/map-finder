@@ -4,7 +4,7 @@ import { AppDispatch, RootState } from "../../store";
 import { ILoginPayload } from "@/app/Components/LoginForm";
 
 export interface LoginSliceType {
-  loginDetails?: any;
+  loginDetails?: ILoginPayload;
   loading?: boolean;
   error?: string;
 }
@@ -37,7 +37,6 @@ function userDetailsFetched(state: LoginSliceType, action: PayloadAction<any>) {
   state.loading = false;
   state.error = undefined;
   state.loginDetails = {...action.payload};
-  console.log(state.loginDetails)
 }
 
 const userDetailSlice = createSlice({

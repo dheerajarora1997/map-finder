@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RootState, AppDispatch } from "../../store";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLoginDetail, reset } from "@/store/reducers/LoginSlice";
+import {saveLocalStorage, removeLocalStorage} from '../utils'
 
 type LoginProps = {};
 
@@ -17,14 +18,16 @@ let loginPayload: ILoginPayload = {
 
 const Login: React.FC<LoginProps> = ({}) => {
 
+  useEffect(()=>{
+    dispatch(reset());
+    removeLocalStorage('userDetails');
+  }, [])
+
+
     const userDetails = useSelector((state: RootState) => state.userDetails);
     const dispatch = useDispatch<AppDispatch>();
   
   const [loginDetails, setLoginDetails] = useState<ILoginPayload>(loginPayload);
-
-  useEffect(()=>{
-    dispatch(reset());
-  }, [])
 
   const fieldChange = (key: string, value: string | number) => {
     setLoginDetails({ ...loginDetails, [key]: value });
@@ -32,7 +35,6 @@ const Login: React.FC<LoginProps> = ({}) => {
 
   let onsubmit = (e: any) => {
     e.preventDefault();
-    dispatch(reset());
     dispatch(fetchLoginDetail(loginDetails))
   };
 
@@ -56,6 +58,7 @@ const Login: React.FC<LoginProps> = ({}) => {
             id="username"
             type="text"
             placeholder="Username"
+            required
             value={loginDetails.userName}
             onChange={(e) => {
               fieldChange("userName", e.target.value);
