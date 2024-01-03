@@ -5,36 +5,25 @@ import Header from "./Components/Header";
 import { useEffect, useState } from "react";
 import { getLocalStorage, saveLocalStorage } from "./utils";
 import { fetchLoginDetail, reset } from "@/store/reducers/LoginSlice";
+import { useAuth0 } from "@auth0/auth0-react";
 
 type MainProps = {};
 
 const Main: React.FC<MainProps> = () => {
-  const userDetails = useSelector((state: RootState) => state.userDetails);
-  const dispatch = useDispatch<AppDispatch>();
-  const [localUserData, setLocalUserData] = useState<null | string>(
-    localStorage.getItem("userDetails") || ''
+  const userDetails = useSelector(
+    (state: RootState) => state.userDetails.loginDetails
   );
+  const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    if (localUserData) {
-      
-    }
-
-  }, [localUserData]);
-
-  useEffect(() => {
-    if (userDetails.loginDetails?.userName) {
-      saveLocalStorage("userDetails", JSON.stringify(userDetails.loginDetails));
-    }
-    setLocalUserData(JSON.stringify(userDetails.loginDetails))
-  }, [userDetails.loginDetails]);
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   return (
-    <main>
-      <Header userInfo={userDetails.loginDetails} />
-      {localUserData}
-      {!localUserData ? <Login /> : <h1>Login</h1>}
-    </main>
+    <>
+      <Header userInfo={userDetails} />
+      <main style={{padding: 70}}>
+        {isAuthenticated && <h2 className="text-dark text-xl">{user?.name}</h2>}
+      </main>
+    </>
   );
 };
 

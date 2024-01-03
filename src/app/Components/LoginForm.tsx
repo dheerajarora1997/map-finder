@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RootState, AppDispatch } from "../../store";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLoginDetail, reset } from "@/store/reducers/LoginSlice";
-import {saveLocalStorage, removeLocalStorage} from '../utils'
+import { saveLocalStorage, removeLocalStorage } from "../utils";
 
 type LoginProps = {};
 
@@ -17,16 +17,12 @@ let loginPayload: ILoginPayload = {
 };
 
 const Login: React.FC<LoginProps> = ({}) => {
+  const userDetails = useSelector(
+    (state: RootState) => state.userDetails.loginDetails
+  );
 
-  useEffect(()=>{
-    dispatch(reset());
-    removeLocalStorage('userDetails');
-  }, [])
+  const dispatch = useDispatch<AppDispatch>();
 
-
-    const userDetails = useSelector((state: RootState) => state.userDetails);
-    const dispatch = useDispatch<AppDispatch>();
-  
   const [loginDetails, setLoginDetails] = useState<ILoginPayload>(loginPayload);
 
   const fieldChange = (key: string, value: string | number) => {
@@ -35,11 +31,11 @@ const Login: React.FC<LoginProps> = ({}) => {
 
   let onsubmit = (e: any) => {
     e.preventDefault();
-    dispatch(fetchLoginDetail(loginDetails))
+    dispatch(fetchLoginDetail(loginDetails));
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100" style={{top: 0}}>
       <form
         onSubmit={(e) => {
           onsubmit(e);
