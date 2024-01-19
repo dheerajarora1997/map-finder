@@ -23,7 +23,7 @@ const Main: React.FC<MainProps> = () => {
   const [longitude, setLongitude] = useState(0);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const mapContainerRef = useRef<any>('');
-  const [zoom, setZoom] = useState(9);
+  const [zoom, setZoom] = useState(15);
   useEffect(() => {
     if (isAuthenticated) {
       if (navigator.geolocation) {
