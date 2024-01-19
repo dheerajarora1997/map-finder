@@ -22,7 +22,7 @@ const Main: React.FC<MainProps> = () => {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const mapContainerRef = useRef('');
+  const mapContainerRef = useRef<any>('');
   const [zoom, setZoom] = useState(9);
   useEffect(() => {
     if (isAuthenticated) {
