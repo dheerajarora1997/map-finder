@@ -12,12 +12,13 @@ type MainProps = {
   latitude: number;
   longitude: number;
   zoom : number;
+  mapHeight: string;
 };
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiZGhlZXJhamFyb3JhMTk5NyIsImEiOiJjbDlvM2VmbTQwZHlzM3BvNW04ODU1NTJ1In0.kpZXObzDZM5VFW3y3oq99g";
 
-const MainMap: React.FC<MainProps> = ({latitude, longitude, zoom}) => {
+const MainMap: React.FC<MainProps> = ({latitude, longitude, zoom, mapHeight}) => {
   const mapContainerRef = useRef<any>("");
   useEffect(() => {
     const map = new mapboxgl.Map({
@@ -34,7 +35,7 @@ const MainMap: React.FC<MainProps> = ({latitude, longitude, zoom}) => {
       <div
         className="map-container"
         ref={mapContainerRef}
-        style={{ height: "99%" }}
+        style={{ height: mapHeight }}
       />
     </>
   );
