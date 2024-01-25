@@ -1,12 +1,5 @@
-import { RootState, AppDispatch } from "../store";
-import { useSelector, useDispatch } from "react-redux";
-import Login from "./Components/LoginForm";
-import Header from "./Components/Header";
+
 import React, { useEffect, useState, useRef } from "react";
-import { getLocalStorage, saveLocalStorage } from "./utils";
-import { fetchLoginDetail, reset } from "@/store/reducers/LoginSlice";
-import { useAuth0 } from "@auth0/auth0-react";
-import mapboxgl from 'mapbox-gl';
 import SOS from "./SOS";
 
 type MainProps = {};

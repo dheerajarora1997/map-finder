@@ -6,7 +6,7 @@ const SOS: FC = () => {
   const [longitude, setLongitude] = useState<number>();
   const router = useRouter();
 
-  if (navigator.geolocation) {
+  if (typeof window !== 'undefined' && typeof navigator !== 'undefined' && typeof navigator.geolocation !== undefined) {
     navigator.geolocation.getCurrentPosition(
       function (position) {
         setLatitude(position.coords.latitude);
