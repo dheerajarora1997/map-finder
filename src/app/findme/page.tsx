@@ -147,7 +147,6 @@ const FindMe: FC = () => {
                 style={{ resize: "none", height: "100px" }}
                 className="p-2 w-full rounded-md"
               >
-                {jsonData}
               </textarea>
             </div>
           </form>
