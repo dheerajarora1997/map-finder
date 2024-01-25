@@ -140,7 +140,7 @@ const FindMe: FC = () => {
               </label>
               <textarea
                 placeholder={`{latitude: ${latitude},longitude: ${longitude}}`}
-                value={jsonData}
+                defaultValue={jsonData}
                 onChange={(e) => {
                   jsonUpdated(e.target.value);
                 }}
