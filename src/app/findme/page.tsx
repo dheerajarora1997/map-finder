@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const FindMe: FC = () => {
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
-  const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [windowWidth, setWindowWidth] = useState<number>(650);
   const [zoom, setZoom] = useState<number>(10);
   const [jsonData, setJsonData] = useState<string>("");
   const router = useRouter();
@@ -43,11 +43,21 @@ const FindMe: FC = () => {
     <>
       <div className={`flex ${ windowWidth < 500 ? 'flex-col flex-col-reverse' : 'h-screen'}`}>
         {/* Left Side */}
-        <div className="flex-1 bg-gray-800 p-8 flex justify-center w-full relative" style={windowWidth < 500 ? {marginTop: '-40px'} : {}}>
+        <div className="flex-1 bg-gray-800 p-8 flex justify-center w-full relative" style={windowWidth < 500 ? {marginTop: '-40px'} : { maxWidth: '550px'}}>
           <form className="w-full flex flex-col justify-center" style={{minHeight: '480px'}}>
-            <h2 className="text-2xl font-bold mb-4 text-white">
+            <div className="flex items-center justify-between mb-2">
+            <h2 className={` font-bold mb-4 text-white ${windowWidth < 500 ? 'text-md' : 'text-2xl'}`} style={{marginBottom: 0}}>
               Paste the Location codes
             </h2>
+            <a
+            href="https://www.linkedin.com/in/dheerajarora1997/"
+            className="bg-blue-500 text-white px-3 py-2 rounded-md"
+            target="_blank"
+            type="button"
+          >
+            Dheeraj Arora
+          </a>
+            </div>
             <div className="mb-4">
               <label
                 className="block text-sm font-bold text-gray-200"
@@ -151,25 +161,16 @@ const FindMe: FC = () => {
               >
               </textarea>
             </div>
-          </form>
           <button
             onClick={() => {
               router.push("/");
             }}
-            className="bg-gray-200 text-gray-700 px-3 py-2 rounded-md"
-            style={{ position: "absolute", left: "20px", bottom: "20px" }}
+            className="bg-gray-200 text-gray-700 px-3 py-2 rounded-md w-full"
           >
             Back to Location Page
           </button>
-          <a
-            href="https://www.linkedin.com/in/dheerajarora1997/"
-            className="bg-blue-500 text-white px-3 py-2 rounded-md"
-            target="_blank"
-            type="button"
-            style={{ position: "absolute", right: "40px", bottom: "20px" }}
-          >
-            Dheeraj Arora
-          </a>
+          </form>
+          
         </div>
 
         {/* Right Side */}
