@@ -15,7 +15,7 @@ export default function Home() {
       domain="india-999.us.auth0.com"
       clientId="6HVppH4Y9WCyZOc2VlTD4EIsoBn4Abf4"
       authorizationParams={{
-        redirect_uri: 'https://quiz-app-beige-xi.vercel.app/',
+        redirect_uri: '/',
       }}
     >
       <Provider store={store}>

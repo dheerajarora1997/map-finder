@@ -28,7 +28,7 @@ const Header: FC<IHeaderProp> = ({ userInfo }) => {
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={() =>
-                logout({ logoutParams: { returnTo: window.location.origin } })
+                logout({ logoutParams: { returnTo: '/' } })
               }
             >
               Logout
