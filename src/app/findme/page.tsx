@@ -156,7 +156,7 @@ const FindMe: FC = () => {
             onClick={() => {
               router.push("/");
             }}
-            className="bg-gray-200 text-dark px-3 py-2 rounded-md"
+            className="bg-gray-200 text-gray-700 px-3 py-2 rounded-md"
             style={{ position: "absolute", left: "20px", bottom: "20px" }}
           >
             Back to Location Page
